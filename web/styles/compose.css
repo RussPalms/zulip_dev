@@ -270,7 +270,56 @@
 #message-content-container {
     grid-area: message-content-container;
     display: grid;
-    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr) var(
+            --composebox-buttons-width
+        );
+    grid-template-areas: "message-content composebox-buttons";
+
+    &:hover {
+        .composebox-buttons > button {
+            opacity: 0.7;
+            visibility: visible;
+        }
+    }
+}
+
+#message-content-container .composebox-buttons {
+    grid-area: composebox-buttons;
+    /* z-index is needed to avoid flickering of cursor and the
+    button when hovering it in preview mode. */
+    z-index: 1;
+    padding-top: 1px;
+    padding-right: 1px;
+    height: max-content;
+
+    button {
+        width: 24px;
+        border: none;
+        aspect-ratio: 1 / 1;
+        background-color: var(--color-composebox-button-background);
+        color: var(--color-text-default);
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.1s ease-in;
+
+        &:hover {
+            opacity: 1;
+            background-color: var(--color-composebox-button-background-hover);
+        }
+    }
+
+    .collapse-composebox-button {
+        display: none;
+    }
+}
+
+#compose-textarea,
+#preview-message-area-container {
+    grid-area: message-content;
 }
 
 #preview-message-area-container {
@@ -384,7 +433,6 @@
     }
 }
 
-.collapse_composebox_button,
 #compose_close {
     display: none;
 }
@@ -714,6 +762,8 @@ textarea.new_message_textarea {
     border-radius: 4px;
     color: hsl(0deg 0% 33%);
     background-color: hsl(0deg 0% 100%);
+    margin-right: calc(var(--composebox-buttons-width) * -1);
+    padding-right: var(--composebox-buttons-width);
 
     &.over_limit,
     &.over_limit:focus {
@@ -1125,6 +1175,8 @@ textarea.new_message_textarea,
 
 .preview_message_area {
     padding: 5px;
+    margin-right: calc(var(--composebox-buttons-width) * -1);
+    padding-right: var(--composebox-buttons-width);
     /* the maximum height the textarea gets to. */
     max-height: 308px;
     /* the minimum height the textarea collapses to. */
@@ -1368,6 +1420,14 @@ textarea.new_message_textarea,
            controls offscreen when previewing a very tall message. */
         height: 0;
         flex: 1;
+    }
+
+    .expand-composebox-button {
+        display: none;
+    }
+
+    .collapse-composebox-button {
+        display: flex;
     }
 }
 

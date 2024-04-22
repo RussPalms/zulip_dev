@@ -122,6 +122,15 @@
     --compose-recipient-box-min-height: 30.5px;
 
     /*
+    Width of the area where the compose box buttons are placed, "inside"
+    the right edge of the compose box. This is used for the negative right
+    margin and the right padding of the textbox to extend it into the compose
+    expand / collapse buttons area, but keep the text from showing under the
+    the buttons.
+    */
+    --composebox-buttons-width: 25px;
+
+    /*
     Width to be reserved for document scrollbar when scrolling is disabled.
     Using `scrollbar-gutter` would be more appropriate but doesn't has wide
     support and doesn't work for `fixed` elements.
@@ -284,6 +293,8 @@
     --color-compose-chevron-arrow: hsl(0deg 0% 58%);
     --color-limit-indicator: hsl(38deg 100% 36%);
     --color-limit-indicator-over-limit: hsl(3deg 80% 40%);
+    --color-composebox-button-background: transparent;
+    --color-composebox-button-background-hover: hsl(0deg 0% 0% / 5%);
 
     /* Text colors */
     --color-text-default: hsl(0deg 0% 20%);
@@ -601,6 +612,7 @@
     --color-background-popover: hsl(212deg 32% 14%);
     --color-limit-indicator: hsl(38deg 100% 70%);
     --color-limit-indicator-over-limit: hsl(3deg 80% 60%);
+    --color-composebox-button-background-hover: hsl(0deg 0% 100% / 5%);
 
     /* Text colors */
     --color-text-default: hsl(0deg 0% 100% / 75%);

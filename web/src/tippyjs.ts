@@ -261,6 +261,8 @@ export function initialize(): void {
     delegate("body", {
         target: [
             "#compose_top_right [data-tippy-content]",
+            ".expand-composebox-button",
+            ".collapse-composebox-button",
             "#compose_top_right [data-tooltip-template-id]",
         ].join(","),
         delay: LONG_HOVER_DELAY,
